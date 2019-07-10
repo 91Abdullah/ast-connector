@@ -68,7 +68,7 @@ class DaemonProcess extends Command
                 $client->on('event', function (Event $event) use ($url) {
                     //$this->info('Event: ' . $event->getName());
                     if ($event->getName() == "Bridge" && $event->getFieldValue('bridgestate') == "Link") {
-                        if (Str::contains($event->getFieldValue('Channel1'), 'TCL')) {
+                        if (str_contains($event->getFieldValue('Channel1'), 'TCL') && !str_contains($event->getFieldValue('Channel2'), 'TCL')) {
                             // This is incoming
                             $this->info(json_encode($event->getFields()));
                             $from_number = $event->getFieldValue('CallerID1');
@@ -103,7 +103,7 @@ class DaemonProcess extends Command
                             ];
                             $response = $httpclient->get($url . "?vtigersignature=abdullah&callstatus=$record->direction&callerIdNumber=$record->to_number&customerNumber=$record->from_number&SourceUUID=$record->uid", $params);
 
-                            $this->info(dump((string)$response->getBody()));
+                            $this->info(dump($response->getBody()));
                             //$this->info(dump($_url));
                         }
                     } elseif ($event->getName() == "Hangup") {
