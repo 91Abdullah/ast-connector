@@ -19,7 +19,7 @@ class MakeCallController extends Controller
         $context = $request->context;
 
         $options = [
-            'host' => '10.0.0.54',
+            'host' => '172.16.0.209',
             'scheme' => 'tcp://',
             'port' => 5038,
             'username' => 'vtiger',
