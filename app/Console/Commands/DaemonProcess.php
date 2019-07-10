@@ -52,7 +52,7 @@ class DaemonProcess extends Command
 
         $url = 'http://server/anicrm/modules/PBXManager/callbacks/PBXManager.php';
 
-        $factory->createClient('vtiger:vtiger123@10.0.0.54')->then(
+        $factory->createClient('vtiger:vtiger123@172.16.0.209')->then(
             function (Client $client) use ($loop, $url) {
                 $this->info('Client connected');
                 $this->info('Press Ctrl + C to exit.');
