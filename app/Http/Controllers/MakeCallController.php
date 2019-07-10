@@ -35,15 +35,12 @@ class MakeCallController extends Controller
 
 
         if($context == "dialoutbound") {
-            $action = new OriginateAction("SIP/$from@TCL");
+            $action = new OriginateAction("SIP/$to@TCL");
             $action->setTimeout(30000);
-            $action->setExtension($to);
+            $action->setExtension($from);
             $action->setContext($context);
             $action->setPriority(1);
             $action->setCallerId("2138786000");
-            Log::info($from);
-            Log::info($to);
-            Log::info($context);
         } else {
             $action = new OriginateAction("SIP/$to@TCL");
             $action->setTimeout(30000);
