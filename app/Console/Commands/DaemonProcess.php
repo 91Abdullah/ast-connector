@@ -50,7 +50,7 @@ class DaemonProcess extends Command
         $loop = \React\EventLoop\Factory::create();
         $factory = new Factory($loop);
 
-        $url = 'http://server/anicrm/modules/PBXManager/callbacks/PBXManager.php';
+        $url = 'http://127.0.0.1/anicrm/modules/PBXManager/callbacks/PBXManager.php';
 
         $factory->createClient('vtiger:vtiger123@172.16.0.209')->then(
             function (Client $client) use ($loop, $url) {
