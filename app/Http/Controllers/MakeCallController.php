@@ -30,16 +30,28 @@ class MakeCallController extends Controller
 
         $client = new ClientImpl($options);
 
-        Log::info($from);
+        //Log::info($from);
         $to = starts_with($to, "0") ? $to : "0" . $to;
 
 
-        $action = new OriginateAction("SIP/$to@TCL");
-        $action->setTimeout(30000);
-        $action->setExtension($from);
-        $action->setContext("default");
-        $action->setPriority(1);
-        $action->setCallerId($to);
+        if($context == "dialoutbound") {
+            $action = new OriginateAction("SIP/$from@TCL");
+            $action->setTimeout(30000);
+            $action->setExtension($to);
+            $action->setContext($context);
+            $action->setPriority(1);
+            $action->setCallerId("2138786000");
+            Log::info($from);
+            Log::info($to);
+            Log::info($context);
+        } else {
+            $action = new OriginateAction("SIP/$to@TCL");
+            $action->setTimeout(30000);
+            $action->setExtension($from);
+            $action->setContext("default");
+            $action->setPriority(1);
+            $action->setCallerId($to);
+        }
 
         try {
             $client->open();
